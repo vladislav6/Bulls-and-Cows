@@ -4,7 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint . --fix",
+    "format": "prettier . --write",
+    "prepare": "husky",
+    "test": "vitest"
+  },
+  "lint-staged": {
+    "*.ts": "npm run lint",
+    "*.{html, css, ts}": "npm run format"
   },
   "repository": {
     "type": "git",
@@ -16,5 +23,19 @@
   "bugs": {
     "url": "https://github.com/vladislav6/Bulls-and-Cows/issues"
   },
-  "homepage": "https://github.com/vladislav6/Bulls-and-Cows#readme"
+  "homepage": "https://github.com/vladislav6/Bulls-and-Cows#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tsconfig/recommended": "^1.0.13",
+    "eslint": "^10.14.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.14.0",
+    "husky": "^9.1.7",
+    "jiti": "^2.7.0",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.9.10",
+    "typescript": "^6.0.0",
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^5.1.0"
+  }
 }
