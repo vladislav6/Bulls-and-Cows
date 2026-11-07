@@ -21,4 +21,11 @@ describe("generateSecret", () => {
     const random = () => values[index++];
     expect(generateSecret(4, 8, random)).toBe('0241');
   });
+
+  it("should generate decimal numbers with length 3", () => {
+    const values = [0.1, 0.3, 0.9];
+    let index = 0;
+    const random = () => values[index++];
+    expect(generateSecret(3, 10, random)).toBe('139');
+  });
 });

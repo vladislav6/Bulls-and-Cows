@@ -3,7 +3,7 @@ export function generateSecret(
   base: number,
   random: () => number = Math.random
 ): string | undefined {
-  const baseChars = '01';
+  const baseChars = '01234567';
   const bases = [2, 8, 10, 16];
 
   if (length < 2 || length > 6) return;
