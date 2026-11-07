@@ -28,4 +28,11 @@ describe("generateSecret", () => {
     const random = () => values[index++];
     expect(generateSecret(3, 10, random)).toBe('139');
   });
+
+  it("should generate hexadecimal numbers with length 6", () => {
+    const values = [0.1, 0.3, 0.5, 0.2, 0.6, 0.9];
+    let index = 0;
+    const random = () => values[index++];
+    expect(generateSecret(6, 16, random)).toBe('14839e');
+  });
 });
