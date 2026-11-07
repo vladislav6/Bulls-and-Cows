@@ -14,4 +14,11 @@ describe("generateSecret", () => {
     const random = () => values[index++];
     expect(generateSecret(2, 2, random)).toBe('01');
   });
+
+  it("should generate octal numbers with length 4", () => {
+    const values = [0.1, 0.3, 0.5, 0.2];
+    let index = 0;
+    const random = () => values[index++];
+    expect(generateSecret(4, 8, random)).toBe('0241');
+  });
 });
