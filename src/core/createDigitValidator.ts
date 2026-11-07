@@ -1,4 +1,8 @@
-export function createDigitValidator(base: number): number {
-  if (base) return 0;
-  return 0;
+export function createDigitValidator(base: number): (char: string) => number {
+  return (char: string) => {
+    if (!base || !char) {
+      return 0;
+    }
+    return 0;
+  }
 }
