@@ -26,4 +26,12 @@ describe("createDigitValidator", () => {
     expect(checkDigit('9')).toEqual(9);
     expect(checkDigit('a')).toBeNaN();
   });
+
+  it("should check hexadecimal chars", () => {
+    const checkDigit = createDigitValidator(16);
+    expect(checkDigit('0')).toEqual(0);
+    expect(checkDigit('a')).toEqual(10);
+    expect(checkDigit('f')).toEqual(15);
+    expect(checkDigit('g')).toBeNaN();
+  });
 });
