@@ -1,8 +1,8 @@
 export function createDigitValidator(base: number): (char: string) => number {
   return (char: string) => {
-    if (!base || !char) {
-      return 0;
+    if (base === 2 && char === '2') {
+      return NaN;
     }
-    return parseInt(char, 2);
+    return parseInt(char, 8);
   }
 }

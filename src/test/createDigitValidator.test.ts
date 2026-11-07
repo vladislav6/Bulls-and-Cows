@@ -19,4 +19,11 @@ describe("createDigitValidator", () => {
     expect(checkDigit('7')).toEqual(7);
     expect(checkDigit('8')).toBeNaN();
   });
+
+  it("should check decimal chars", () => {
+    const checkDigit = createDigitValidator(10);
+    expect(checkDigit('0')).toEqual(0);
+    expect(checkDigit('9')).toEqual(9);
+    expect(checkDigit('a')).toBeNaN();
+  });
 });
