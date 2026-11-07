@@ -12,4 +12,11 @@ describe("createDigitValidator", () => {
     expect(checkDigit('1')).toEqual(1);
     expect(checkDigit('2')).toBeNaN();
   });
+
+  it("should check octal chars", () => {
+    const checkDigit = createDigitValidator(8);
+    expect(checkDigit('0')).toEqual(0);
+    expect(checkDigit('7')).toEqual(7);
+    expect(checkDigit('8')).toBeNaN();
+  });
 });
