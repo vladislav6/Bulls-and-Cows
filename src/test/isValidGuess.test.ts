@@ -5,4 +5,8 @@ describe("isValidGuess", () => {
   it("should validate length", () => {
     expect(isValidGuess('abced', 6, 16)).toBeFalsy();
   });
+
+  it("should validate repeated digits", () => {
+    expect(isValidGuess('abbed', 5, 16)).toBeFalsy();
+  });
 });
