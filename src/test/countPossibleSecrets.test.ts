@@ -7,4 +7,9 @@ describe("countPossibleSecrets", () => {
     expect(countPossibleSecrets(5, -1)).toBe(0);
     expect(countPossibleSecrets(6, 5)).toBe(0);
   });
+
+  it('should return 1 when length is 0', () => {
+    expect(countPossibleSecrets(0, 10)).toBe(1);
+    expect(countPossibleSecrets(0, 2)).toBe(1);
+  });
 });
