@@ -3,9 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bulls and Cows</title>
-  </head>
-  <body>
     <script type="module" src="./dist/index.js"></script>
-  </body>
+    <title>Bulls and Cows</title>
+    <style>
+      header,
+      section {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      header,
+      main {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      header {
+        padding: 10px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid gray;
+      }
+      section {
+        padding: 20px;
+      }
+      fieldset {
+        flex-grow: 1;
+      }
+      fieldset:has(input[type='text']) {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px;
+      }
+      input[type='text'] {
+        flex-grow: 1;
+      }
+      button:hover {
+        cursor: pointer;
+      }
+      .possible-numbers,
+      .error-guess {
+        margin: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body></body>
 </html>

@@ -1,4 +1,4 @@
-import { createDigitValidator } from "./createDigitValidator";
+import { createDigitValidator } from './createDigitValidator.js';
 
 export function isValidGuess(guess: string, length: number, base: number): boolean {
   if (guess.length !== length) return false;
@@ -6,7 +6,5 @@ export function isValidGuess(guess: string, length: number, base: number): boole
 
   const checkDigit = createDigitValidator(base);
 
-  return [...guess]
-    .map(val => checkDigit(val.toLowerCase()))
-    .every(val => !Number.isNaN(val));
+  return [...guess].map((val) => checkDigit(val.toLowerCase())).every((val) => !Number.isNaN(val));
 }

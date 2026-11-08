@@ -1,8 +1,4 @@
-export function generateSecret(
-  length: number,
-  base: number,
-  random: () => number = Math.random
-): string | undefined {
+export function generateSecret(length: number, base: number, random: () => number = Math.random): string | undefined {
   const baseChars = '0123456789abcdef';
   const bases = [2, 8, 10, 16];
 
@@ -13,7 +9,7 @@ export function generateSecret(
 
   let secretNumber = '';
 
-  while(secretNumber.length < length) {
+  while (secretNumber.length < length) {
     const randomNumber = Math.floor(random() * base);
     const char = `${baseChars[randomNumber]}`;
     if (char && !secretNumber.includes(char)) {
