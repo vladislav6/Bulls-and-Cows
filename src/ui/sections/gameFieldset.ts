@@ -1,7 +1,8 @@
 import { createMyElement } from '../../common/functions.js';
 import { countPossibleSecrets } from '../../core/countPossibleSecrets.js';
-import { evaluateSecret } from '../../core/evaluateSecret.js';
+// import { evaluateSecret } from '../../core/evaluateSecret.js';
 import { isValidGuess } from '../../core/isValidGuess.js';
+import { createDigitValidator } from '../../core/createDigitValidator.js';
 import type { gameOptions } from '../../type/types';
 
 function createGameFieldset(gameOptions: gameOptions): HTMLElement {
@@ -20,6 +21,15 @@ function createGameFieldset(gameOptions: gameOptions): HTMLElement {
   gameCheckButton.textContent = 'Check guess';
   const errorGuess = createMyElement('p', 'error-guess');
 
+  const validChar = createDigitValidator(base);
+  gameGuessInput.addEventListener('input', (event: InputEvent) => {
+    if (!event.data) return;
+    const validatedChar = validChar(event.data);
+    if (isNaN(validatedChar) || gameGuessInput.value.length > length) {
+      gameGuessInput.value = gameGuessInput.value.slice(0, -1);
+    }
+  });
+  
   gameCheckButton.addEventListener('click', () => {
     const guess = gameGuessInput.value;
     if (!isValidGuess(guess, length, base)) {
@@ -27,9 +37,7 @@ function createGameFieldset(gameOptions: gameOptions): HTMLElement {
       gameFieldset.append(errorGuess);
     } else {
       if (!secret) return;
-      const evaluateResult = evaluateSecret(secret, guess);
-      gameFieldset.append(errorGuess);
-      errorGuess.textContent = JSON.stringify(evaluateResult);
+      // const evaluateResult = evaluateSecret(secret, guess);
     }
   });
 
