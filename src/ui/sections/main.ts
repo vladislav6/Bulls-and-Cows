@@ -1,4 +1,4 @@
-import { createMyElement, createRadioButtons } from '../../common/functions.js';
+import { createMyElement, createRadioButtons, disableLengthInputs } from '../../common/functions.js';
 import { startGame } from '../gameControl/startGame.js';
 
 function main(): HTMLElement {
@@ -22,6 +22,7 @@ function main(): HTMLElement {
   const gameSection = createMyElement('section', 'game-section');
   const gameLogsSection = createMyElement('section');
 
+  baseRadioButtons.addEventListener('change', disableLengthInputs);  
   startGameButton.addEventListener('click', startGame);
 
   gameSettingsSection.append(lengthRadioButtons, baseRadioButtons, startGameButton);

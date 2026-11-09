@@ -41,7 +41,7 @@ export function createRadioButtons(
     radioInput.name = name;
     radioInput.value = value;
 
-    if (id === 0) {
+    if (id === 2) {
       radioInput.checked = true;
     }
 
@@ -67,4 +67,15 @@ export function timer(element: HTMLElement): () => void {
     const secondsFormat: string | number = seconds < 10 ? `0${seconds}` : seconds;
     element.textContent = `${minutesFormat}:${secondsFormat}`;
   };
+}
+
+export const disableLengthInputs = (e: Event) => {
+  const target = e.target as HTMLInputElement;
+  const lengthInputs = document.querySelectorAll('.length input') as NodeListOf<HTMLInputElement>;
+  if (lengthInputs[0] && target.closest('input[value="2"]')) {
+    lengthInputs[0].checked = true;
+    lengthInputs.forEach((input) => input.disabled = true);
+  } else {
+    lengthInputs.forEach((input) => input.disabled = false);
+  }
 }

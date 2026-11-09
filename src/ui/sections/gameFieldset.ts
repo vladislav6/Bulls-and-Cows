@@ -28,6 +28,7 @@ function createGameFieldset(gameOptions: gameOptions): HTMLElement {
     } else {
       if (!secret) return;
       const evaluateResult = evaluateSecret(secret, guess);
+      gameFieldset.append(errorGuess);
       errorGuess.textContent = JSON.stringify(evaluateResult);
     }
   });

@@ -4,11 +4,10 @@ export function evaluateSecret(secret: string, guess: string): bullsAndCows {
   return [...guess]
     .map((char) => char.toLowerCase())
     .reduce(
-      (acc, char, id, chars) => {
+      (acc, char, id) => {
         if (char === secret[id]) {
           acc.bulls += 1;
-        }
-        if (secret[id] && chars.includes(secret[id])) {
+        } else if (secret[id] && guess.includes(secret[id])) {
           acc.cows += 1;
         }
         return acc;
