@@ -28,6 +28,8 @@
       }
       fieldset {
         flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
       }
       fieldset:has(input[type='text']) {
         display: flex;
@@ -45,6 +47,23 @@
       .error-guess {
         margin: 0;
         width: 100%;
+      }
+      .win-game {
+        padding: 10px;
+        border: 2px solid green;
+      }
+      .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .logs {
+        flex-direction: column;
       }
     </style>
   </head>

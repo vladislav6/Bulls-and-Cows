@@ -1,9 +1,12 @@
 import { createMyElement } from '../../common/functions.js';
 import { countPossibleSecrets } from '../../core/countPossibleSecrets.js';
-// import { evaluateSecret } from '../../core/evaluateSecret.js';
+import { evaluateSecret } from '../../core/evaluateSecret.js';
 import { isValidGuess } from '../../core/isValidGuess.js';
 import { createDigitValidator } from '../../core/createDigitValidator.js';
 import type { gameOptions } from '../../type/types';
+import gameStorage from '../data/storage.js';
+import logs from './logs.js';
+import endOfGame from '../gameControl/endOfGame.js';
 
 function createGameFieldset(gameOptions: gameOptions): HTMLElement {
   const { length, base, secret } = gameOptions;
@@ -11,7 +14,8 @@ function createGameFieldset(gameOptions: gameOptions): HTMLElement {
   const possibleSecretNumbers = countPossibleSecrets(length, base);
 
   const gameFieldset = createMyElement('fieldset');
-  const fieldsetLegend = createMyElement('legend', '', '', 'Enter your guess number');
+  const legend = `Enter your guess number with length ${length} in ${base} base. All chars must be unique`;
+  const fieldsetLegend = createMyElement('legend', '', '', legend);
   const possibleNumbersField = createMyElement('p', 'possible-numbers');
   possibleNumbersField.textContent = `Possible numbers variations count: ${possibleSecretNumbers}`;
   const gameGuessInput = createMyElement('input') as HTMLInputElement;
@@ -23,13 +27,17 @@ function createGameFieldset(gameOptions: gameOptions): HTMLElement {
 
   const validChar = createDigitValidator(base);
   gameGuessInput.addEventListener('input', (event: InputEvent) => {
-    if (!event.data) return;
-    const validatedChar = validChar(event.data);
+    const char = event.data;
+    if (!char) return;
+    const validatedChar = validChar(char);
+    const uniqueChars = new Set(gameGuessInput.value);
     if (isNaN(validatedChar) || gameGuessInput.value.length > length) {
-      gameGuessInput.value = gameGuessInput.value.slice(0, -1);
+      gameGuessInput.value = gameGuessInput.value.replace(`${char}`, '');
+    } else {
+      gameGuessInput.value = [...uniqueChars.values()].join('');
     }
   });
-  
+
   gameCheckButton.addEventListener('click', () => {
     const guess = gameGuessInput.value;
     if (!isValidGuess(guess, length, base)) {
@@ -37,7 +45,15 @@ function createGameFieldset(gameOptions: gameOptions): HTMLElement {
       gameFieldset.append(errorGuess);
     } else {
       if (!secret) return;
-      // const evaluateResult = evaluateSecret(secret, guess);
+      errorGuess.remove();
+      if (gameStorage.history.find((move) => move.guess === guess)) return;
+      const evaluateResult = evaluateSecret(secret, guess);
+      gameStorage.history = [...gameStorage.history, { guess, result: evaluateResult }];
+      logs();
+      if (evaluateResult.bulls === length) {
+        gameFieldset.inert = true;
+        endOfGame({ length, base, secret });
+      }
     }
   });
 

@@ -11,7 +11,7 @@
     "module": "es2022",
     "types": [],
     // For nodejs:
-    // "lib": ["esnext"],
+    "lib": ["ES2025", "DOM"],
     // "types": ["node"],
     // and npm install -D @types/node
 

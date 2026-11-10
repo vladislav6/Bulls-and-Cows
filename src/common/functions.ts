@@ -74,8 +74,8 @@ export const disableLengthInputs = (e: Event) => {
   const lengthInputs = document.querySelectorAll('.length input') as NodeListOf<HTMLInputElement>;
   if (lengthInputs[0] && target.closest('input[value="2"]')) {
     lengthInputs[0].checked = true;
-    lengthInputs.forEach((input) => input.disabled = true);
+    lengthInputs.forEach((input) => (input.disabled = true));
   } else {
-    lengthInputs.forEach((input) => input.disabled = false);
+    lengthInputs.forEach((input) => (input.disabled = false));
   }
-}
+};

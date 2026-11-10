@@ -20,9 +20,9 @@ function main(): HTMLElement {
   const startGameButton = createMyElement('button', '', '', 'Start Game');
 
   const gameSection = createMyElement('section', 'game-section');
-  const gameLogsSection = createMyElement('section');
+  const gameLogsSection = createMyElement('section', 'logs');
 
-  baseRadioButtons.addEventListener('change', disableLengthInputs);  
+  baseRadioButtons.addEventListener('change', disableLengthInputs);
   startGameButton.addEventListener('click', startGame);
 
   gameSettingsSection.append(lengthRadioButtons, baseRadioButtons, startGameButton);
