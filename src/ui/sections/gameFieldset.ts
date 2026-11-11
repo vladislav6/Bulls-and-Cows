@@ -34,7 +34,7 @@ function createGameFieldset(gameOptions: gameOptions): HTMLElement {
     if (isNaN(validatedChar) || gameGuessInput.value.length > length) {
       gameGuessInput.value = gameGuessInput.value.replace(`${char}`, '');
     } else {
-      gameGuessInput.value = [...uniqueChars.values()].join('');
+      gameGuessInput.value = [...uniqueChars.values()].join('').toLowerCase();
     }
   });
 
